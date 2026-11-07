@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}{{ page_title }} · StudyOS{% endblock %}
+{% block content %}
+<section class="page-heading">
+    <div>
+        <p class="eyebrow"><a href="{{ url_for('assignments') }}">Assignments</a> / {{ page_title }}</p>
+        <h1>{{ page_title }}</h1>
+        <p class="muted">Add the details you need to remember.</p>
+    </div>
+</section>
+
+<section class="panel form-panel">
+    {% if errors %}
+    <div class="form-errors" role="alert">
+        <p>Please check the following:</p>
+        <ul>{% for error in errors %}<li>{{ error }}</li>{% endfor %}</ul>
+    </div>
+    {% endif %}
+    <form method="post" class="assignment-form">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <div class="form-field">
+            <label for="title">Assignment title <span class="required">*</span></label>
+            <input id="title" name="title" maxlength="120" required value="{{ values.title }}" placeholder="e.g. Read chapter 4">
+        </div>
+        <div class="form-row">
+            <div class="form-field">
+                <label for="subject">Subject <span class="required">*</span></label>
+                <input id="subject" name="subject" maxlength="80" required value="{{ values.subject }}" placeholder="e.g. Biology">
+            </div>
+            <div class="form-field">
+                <label for="due_date">Due date <span class="required">*</span></label>
+                <input id="due_date" name="due_date" type="date" required value="{{ values.due_date }}">
+            </div>
+        </div>
+        <div class="form-field">
+            <label for="priority">Priority</label>
+            <select id="priority" name="priority">
+                {% for priority in priorities %}
+                <option value="{{ priority }}" {{ 'selected' if values.priority == priority }}>{{ priority }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-field">
+            <label for="description">Notes <span class="muted">(optional)</span></label>
+            <textarea id="description" name="description" rows="4" maxlength="1000" placeholder="Any details worth remembering">{{ values.description or '' }}</textarea>
+        </div>
+        <div class="form-actions">
+            <button class="button primary" type="submit">Save assignment</button>
+            <a class="button" href="{{ url_for('assignments') }}">Cancel</a>
+        </div>
+    </form>
+</section>
+{% endblock %}

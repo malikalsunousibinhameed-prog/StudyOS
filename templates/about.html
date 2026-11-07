@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}About · StudyOS{% endblock %}
+{% block content %}
+<section class="page-heading">
+    <div>
+        <p class="eyebrow">About this project</p>
+        <h1>About StudyOS</h1>
+        <p class="muted">A small tool for keeping schoolwork organized.</p>
+    </div>
+</section>
+<section class="panel about-panel">
+    <h2>Why it exists</h2>
+    <p>StudyOS is designed to make it easier to remember deadlines, decide what to work on next, and keep a basic record of focused study time. It keeps the workflow intentionally simple: add assignments, review what is due, and mark work complete.</p>
+    <h2>What it includes</h2>
+    <ul class="feature-list">
+        <li>Assignment creation, editing, completion, and deletion.</li>
+        <li>Search, status filters, and deadline sorting.</li>
+        <li>A short Today's Mission list based on urgency and priority.</li>
+        <li>A 25-minute study timer and recorded study sessions.</li>
+        <li>Assignment totals and a seven-day study activity chart.</li>
+    </ul>
+    <h2>Built with</h2>
+    <p>Python, Flask, SQLite, HTML, CSS, JavaScript, and Jinja templates.</p>
+    <p class="muted small">StudyOS is a local, single-user learning project. It does not include user accounts or cloud synchronization.</p>
+</section>
+{% endblock %}
